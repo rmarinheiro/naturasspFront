@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="row" *ngIf="produtoDetalhe">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <img src="{{ produtoDetalhe.link }}" width="100%">
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-8 col-xl-8">
+            <h3>{{ produtoDetalhe.nome }}</h3>
+            <p>{{produtoDetalhe.detalhe}}</p>
+            <h4> {{ produtoDetalhe.preco | currency:'BRL':true:'1.2-2'}}</h4>
+            <div class="input-group">
+                    <input type="number" [(ngModel)]="quantidade" class="form-control" placeholder="1" value="1" max="100" min="1">
+                    <button type="button" (click)="adicionarCarrinho()" class="btn btn-primary">Adicionar ao Carrinho </button>
+              </div>
+
+        </div>
+    </div>
+</div>

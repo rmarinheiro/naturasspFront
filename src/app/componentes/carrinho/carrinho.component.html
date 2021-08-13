@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="row">
+       <div class="col-12 text-center">
+            <h3>Seu Carrinho</h3>
+        </div>
+    </div>
+    <div class="row" *ngIf="vazio == true">
+        <div class="col-12">
+            <h3>Seu Carrinho ta vazio</h3>
+        </div>
+    </div>
+    <div id="itens" *ngIf="vazio == false">
+        <div class="row">
+            <div class="col-12">
+                <h3>Valor Total {{pedido.valorTotal | currency:'BRL'}}</h3>
+                <br/>
+            </div>
+        </div>
+        <div class="row itemPedido" *ngFor="let ITEM of pedido.itensPedido">
+            <div class="col-xs-6 col-sm-6 col-md-3 col-lg-2 col-xl-2">
+                <img src="{{ITEM.produto.link}}" width="80%"/>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-3 col-lg-2 col-xl-2">
+             
+               <h5> {{ITEM.produto.nome}} 
+                 <a> <i (click)="removerItem(ITEM.produto.id)" class="far fa-trash-alt"></i></a>
+                </h5>  
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-3 col-lg-2 col-xl-2">
+                <label for="qtd_item">Quantidade</label>
+               <h5 id="qtd_item"> {{ITEM.qtd_item}}</h5>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-2 col-xl-1">
+            <label for="preco">Preço</label>
+           <h5> {{ITEM.produto.preco | currency:'BRL':true:'1.2-2'}} </h5>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-2 col-xl-2">
+            <label for="valorTotal">Valor Total</label>
+           <h5>{{ITEM.preco_total | currency:'BRL':true:'1.2-2'}}</h5>
+        </div>
+        </div>
+    </div>
+    <br/>
+    <div class="row" *ngIf="pedido != null && pedido.itensPedido.length > 0">
+        <div class="col-6 text-center">
+            <button class="btn btn-primary" (click)="efetivar()">Finalizar Compra</button>           
+        </div>
+        <div class="col-6 text-center">
+            <button class="btn btn-primary" (click)="continuar()">Continuar Comprando</button>
+           
+        </div>
+        <br/>
+    </div>
+ </div>
+
